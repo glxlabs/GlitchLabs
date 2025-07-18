@@ -36,19 +36,7 @@ const Contact: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
     setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        project: "",
-        message: "",
-      });
-    }, 2000);
   };
 
   return (
