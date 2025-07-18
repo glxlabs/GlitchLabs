@@ -3,7 +3,7 @@ import GlitchText from "../ui/GlitchText";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-cyber-dark border-t border-cyber-green/20 mt-20">
+    <footer className="bg-cyber-dark border-t border-cyber-green/20 mt-20 mb-16 md:mb-0">
       <div className="container mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
