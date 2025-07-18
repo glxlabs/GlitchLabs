@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 interface PageTransitionProps {
@@ -9,31 +9,83 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [glitchIntensity, setGlitchIntensity] = useState(0);
   const location = useLocation();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setIsTransitioning(true);
     setGlitchIntensity(10);
 
-    const glitchSequence = [
-      { delay: 0, intensity: 10 },
-      { delay: 100, intensity: 8 },
-      { delay: 200, intensity: 15 },
-      { delay: 300, intensity: 5 },
-      { delay: 400, intensity: 12 },
-      { delay: 500, intensity: 3 },
-      { delay: 600, intensity: 0 },
-    ];
+    // Initialize audio
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/glitch_the_system.mp3");
+      audioRef.current.volume = 0.3;
+    }
 
-    glitchSequence.forEach(({ delay, intensity }) => {
-      setTimeout(() => {
-        setGlitchIntensity(intensity);
-      }, delay);
-    });
+    const audio = audioRef.current;
 
-    setTimeout(() => {
-      setIsTransitioning(false);
-      setGlitchIntensity(0);
-    }, 700);
+    // Play audio and sync glitch effect
+    const playAudioAndGlitch = async () => {
+      try {
+        await audio.play();
+
+        // Get audio duration to sync glitch effect
+        const audioDuration = audio.duration * 1000;
+
+        // Create glitch sequence based on audio duration
+        const glitchSequence = [
+          { delay: 0, intensity: 15 },
+          { delay: audioDuration * 0.1, intensity: 8 },
+          { delay: audioDuration * 0.2, intensity: 20 },
+          { delay: audioDuration * 0.3, intensity: 5 },
+          { delay: audioDuration * 0.4, intensity: 18 },
+          { delay: audioDuration * 0.5, intensity: 12 },
+          { delay: audioDuration * 0.6, intensity: 25 },
+          { delay: audioDuration * 0.7, intensity: 7 },
+          { delay: audioDuration * 0.8, intensity: 15 },
+          { delay: audioDuration * 0.9, intensity: 3 },
+          { delay: audioDuration, intensity: 0 },
+        ];
+
+        glitchSequence.forEach(({ delay, intensity }) => {
+          setTimeout(() => {
+            setGlitchIntensity(intensity);
+          }, delay);
+        });
+
+        // End transition after audio finishes
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setGlitchIntensity(0);
+        }, audioDuration + 100);
+      } catch (error) {
+        console.log(
+          "Audio playback failed, falling back to visual-only transition"
+        );
+        // Fallback to original timing if audio fails
+        const fallbackSequence = [
+          { delay: 0, intensity: 10 },
+          { delay: 100, intensity: 8 },
+          { delay: 200, intensity: 15 },
+          { delay: 300, intensity: 5 },
+          { delay: 400, intensity: 12 },
+          { delay: 500, intensity: 3 },
+          { delay: 600, intensity: 0 },
+        ];
+
+        fallbackSequence.forEach(({ delay, intensity }) => {
+          setTimeout(() => {
+            setGlitchIntensity(intensity);
+          }, delay);
+        });
+
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setGlitchIntensity(0);
+        }, 700);
+      }
+    };
+
+    playAudioAndGlitch();
   }, [location.pathname]);
 
   return (
