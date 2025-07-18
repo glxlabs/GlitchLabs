@@ -30,7 +30,10 @@
       property="og:description"
       content="Elite hacker collective specializing in digital brutalism, creative coding, and cutting-edge web experiences. Custom development with controlled chaos and precision."
     />
-    <meta property="og:image" content="https://theglitchlabs.xyz/og-image.jpg" />
+    <meta
+      property="og:image"
+      content="https://theglitchlabs.xyz/og-image.jpg"
+    />
     <meta property="og:site_name" content="GlitchLabs" />
     <meta property="og:locale" content="en_US" />
 
@@ -95,6 +98,20 @@
 
   <body>
     <div id="root"></div>
+
+    <!-- Hidden form for Netlify detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <select name="project">
+        <option value="web-app">Custom Web Application</option>
+        <option value="brand-identity">Brand Identity & Design</option>
+        <option value="technical-consulting">Technical Consulting</option>
+        <option value="other">Something Else Entirely</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
