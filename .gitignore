@@ -1,0 +1,45 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
+
+# Vite
+dist/
+.vite/
+vite.config.ts.timestamp*
+
+# Build output
+build/
+public/build/
+dist-ssr/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Dependency directories
+/node_modules
+
+# Logs
+*.log
+logs/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# macOS
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
