@@ -33,7 +33,7 @@ const Portfolio: React.FC = () => {
       ],
       status: "LIVE", // or 'DEPLOYED', 'OSS', 'BETA'
       glitchIntensity: 6, // 1-10 for hover effect intensity
-      demoUrl: "https://shappa.africa",
+      demoUrl: "https://www.shappa.africa/",
       githubUrl: null,
     },
   ];
