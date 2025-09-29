@@ -20,6 +20,17 @@ const Portfolio: React.FC = () => {
       githubUrl: "https://github.com/glxlabs/chaos-ui.git",
     },
     {
+      title: "XPLocker",
+      category: "DEFI",
+      description:
+        "Professional liquidity locking solution for the XPL blockchain. Secure token locking dApp with MetaMask integration, configurable fees, and real-time transaction tracking.",
+      tech: ["React", "ethers.js", "Tailwind CSS", "Vite", "Web3"],
+      status: "DEPLOYED",
+      glitchIntensity: 8,
+      demoUrl: "https://xplocker.app/",
+      githubUrl: null,
+    },
+    {
       title: "Shappa",
       category: "TRAVEL_TECH", // or 'BRAND_IDENTITY', 'OPEN_SOURCE', 'WEB_APP', etc.
       description:
